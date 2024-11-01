@@ -1,6 +1,6 @@
 import { data } from "./seed";
 
-class Article {
+export class Article {
     public title: string;
     public description: string;
     public author: string;
