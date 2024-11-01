@@ -9,4 +9,17 @@ import { Article } from "../../data/data";
 })
 export class ArticleItemComponent{
     @Input("articleProp")article: Article|null=null;
+    public isImageShown=true;
+    public isDescShown=false;
+    public toggleButtons=true;
+    public readMore():void{
+        this.isImageShown=false;
+        this.isDescShown=true;
+        this.toggleButtons=false;
+    }
+    public hideDesc():void{
+        this.isImageShown=true;
+        this.isDescShown=false;
+        this.toggleButtons=true;
+    }
 }

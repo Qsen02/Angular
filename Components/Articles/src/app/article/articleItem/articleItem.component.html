@@ -1,6 +1,9 @@
 <li>
     <div id="title">{{article?.title}}</div>
-    <button>Read More</button>
-    <button>Hide Desc</button>
-    <img src={{article?.imageUrl}} alt="article image" />
+    @if(toggleButtons){
+    <button (click)="readMore()">Read More</button> }@else{
+    <button (click)="hideDesc()">Hide Desc</button> } @if(isImageShown){
+    <img src={{article?.imageUrl}} alt="article image" /> } @if(isDescShown){
+    <p>{{article?.description}}</p>
+    }
 </li>
