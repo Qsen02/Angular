@@ -14,7 +14,7 @@ class Article {
 }
 
 export class ArticleData {
-    public getData(): Article[] {
+    public static getData(): Article[] {
         const articles: Article[] = [];
         for (let curData of data) {
             const article = new Article(curData.title,curData.description,curData.author,curData.imageUrl);
