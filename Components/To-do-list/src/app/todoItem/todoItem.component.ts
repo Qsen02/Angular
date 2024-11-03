@@ -16,7 +16,7 @@ export class TodoItemComponent {
     public deleteTodo(event: Event): void {
         if (this.todoList) {
             const target = event.target as HTMLElement
-            const content = target?.parentElement?.parentElement?.children[0].textContent;
+            const content = target?.parentElement?.parentElement?.parentElement?.children[0].children[0].textContent;
             const removingTodo = this.todoList.find(el => el.content == content);
             if (removingTodo) {
                 const index = this.todoList.indexOf(removingTodo);
@@ -33,4 +33,18 @@ export class TodoItemComponent {
         }
     }
 
+    public editToDo(event: Event) {
+        debugger
+        if (this.todoList) {
+            const target = event.target as HTMLElement
+            const newContent = target.parentElement?.children[0] as HTMLInputElement;
+            const oldContent = target.parentElement?.parentElement?.children[0].textContent;
+            const todo = this.todoList.find(el => el.content == oldContent);
+            if (todo) {
+                const index = this.todoList.indexOf(todo);
+                this.todoList[index].content = newContent.value;
+                newContent.value = "";
+            }
+        }
+    }
 }

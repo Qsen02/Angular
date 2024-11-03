@@ -4,7 +4,7 @@
         @if(isEditFormShown){
         <div class="edit-form">
             <input type="text" id="contentName" name="contentName" placeholder="Update to do..."/>
-            <button>Submit</button>
+            <button (click)="editToDo($event)">Submit</button>
         </div>
         }
     </div>
