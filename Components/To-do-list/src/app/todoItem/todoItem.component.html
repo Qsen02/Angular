@@ -1,7 +1,17 @@
 <div class="item">
-    <p id="content">{{todo?.content}}</p>
-    <div>
-        <button>Edit</button>
-        <button id="delete" (click)="deleteTodo($event)">Delete</button>
+    <div class="content-item">
+        <p id="content">{{todo?.content}}</p>
+        @if(isEditFormShown){
+        <div class="edit-form">
+            <input type="text" id="contentName" name="contentName" placeholder="Update to do..."/>
+            <button>Submit</button>
+        </div>
+        }
+    </div>
+    <div class="buttons">
+        <div>
+            <button (click)="showEditForm()">Edit</button>
+            <button id="delete" (click)="deleteTodo($event)">Delete</button>
+        </div>
     </div>
 </div>
