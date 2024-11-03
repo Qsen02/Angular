@@ -1,12 +1,14 @@
 <section class="container">
     <div class="container-header">
-            <label for="todoName">Add new to do</label>
+        <label for="todoName">Add new to do</label>
         <div>
             <input type="text" id="todoName" name="todoName">
-            <button>Add</button>
+            <button (click)="addTodo()">Add</button>
         </div>
     </div>
     <div class="container-body">
-
+        @for (todo of todoList; track $index) {
+        <div>{{todo?.content}}</div>
+        }
     </div>
 </section>
