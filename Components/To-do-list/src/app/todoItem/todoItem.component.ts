@@ -34,7 +34,6 @@ export class TodoItemComponent {
     }
 
     public editToDo(event: Event) {
-        debugger
         if (this.todoList) {
             const target = event.target as HTMLElement
             const newContent = target.parentElement?.children[0] as HTMLInputElement;
