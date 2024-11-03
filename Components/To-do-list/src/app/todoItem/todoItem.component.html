@@ -1,7 +1,7 @@
 <div class="item">
-    <p>{{todo?.content}}</p>
+    <p id="content">{{todo?.content}}</p>
     <div>
         <button>Edit</button>
-        <button id="delete">Delete</button>
+        <button id="delete" (click)="deleteTodo($event)">Delete</button>
     </div>
 </div>

@@ -9,4 +9,17 @@ import { ToDo } from "../typesAndClasses";
 })
 export class TodoItemComponent {
     @Input("todoProp") todo: ToDo | null = null;
+    @Input("todoListProp") todoList: ToDo[] | null = null;
+
+    public deleteTodo(event:Event): void {
+        if (this.todoList) {
+            const target=event.target as HTMLElement
+            const content = target?.parentElement?.parentElement?.children[0].textContent;
+            const removingTodo = this.todoList.find(el => el.content == content);
+            if (removingTodo) {
+                const index = this.todoList.indexOf(removingTodo);
+                this.todoList.splice(index,1);
+            }
+        }
+    }
 }
