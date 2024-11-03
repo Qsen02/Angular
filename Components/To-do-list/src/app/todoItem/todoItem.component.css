@@ -1,0 +1,29 @@
+.item {
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 2px solid black;
+}
+
+.item p {
+    flex: 0 0 60%;
+}
+
+.item div{
+    display: flex;
+    gap:30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#delete{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+#delete:hover{
+    background-color: rgb(171, 5, 5);
+}

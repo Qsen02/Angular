@@ -35,18 +35,6 @@
     font-size: 12pt;
 }
 
-.container-header  div button {
-    width: 100px;
-    height: 40px;
-    border-radius: 15px;
-    border: none;
-    background-color: rgb(230, 230, 15);
-    font-size: 14pt;
-    cursor: pointer;
-}
-.container-header  div button:hover{
-    background-color: yellow;
-}
 .container-header label{
     font-size: 14pt;
 }
