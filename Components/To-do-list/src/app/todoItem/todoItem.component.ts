@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { ToDo } from "../typesAndClasses";
+import { ToDoService } from "../app.service";
 
 @Component({
     selector: "app-todo-item",
@@ -9,19 +10,16 @@ import { ToDo } from "../typesAndClasses";
 })
 export class TodoItemComponent {
     @Input("todoProp") todo: ToDo | null = null;
-    @Input("todoListProp") todoList: ToDo[] | null = null;
+
+    constructor(private todoService: ToDoService) { }
 
     public isEditFormShown = false;
 
     public deleteTodo(event: Event): void {
-        if (this.todoList) {
+        if (this.todoService.todoList) {
             const target = event.target as HTMLElement
             const content = target?.parentElement?.parentElement?.parentElement?.children[0].children[0].textContent;
-            const removingTodo = this.todoList.find(el => el.content == content);
-            if (removingTodo) {
-                const index = this.todoList.indexOf(removingTodo);
-                this.todoList.splice(index, 1);
-            }
+            this.todoService.deleteTodo(content);
         }
     }
 
@@ -34,16 +32,12 @@ export class TodoItemComponent {
     }
 
     public editToDo(event: Event) {
-        if (this.todoList) {
+        if (this.todoService.todoList) {
             const target = event.target as HTMLElement
             const newContent = target.parentElement?.children[0] as HTMLInputElement;
-            const oldContent = target.parentElement?.parentElement?.children[0].textContent;
-            const todo = this.todoList.find(el => el.content == oldContent);
-            if (todo) {
-                const index = this.todoList.indexOf(todo);
-                this.todoList[index].content = newContent.value;
-                newContent.value = "";
-            }
+            const oldContent = target.parentElement?.parentElement?.children[0]
+            this.todoService.updateTodo(oldContent?.textContent, newContent.value);
+            newContent.value = "";
         }
     }
 }
