@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isAuthenticated = false;
 
+  login() {
+    this.isAuthenticated = true;
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+  }
 }

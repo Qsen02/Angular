@@ -1,17 +1,23 @@
 <header>
     <div class="mini-navbar-wrap">
         <div class="logo-wrap">
-            <img src="images/logo.png" >
+            <img src="images/logo.png">
             <p class="logo"> SoftUni Forum</p>
         </div>
         <div class="mini-navbar">
             <ul>
+                @if(!isAuthenticated){
                 <li>
-                    <a href="#">Login</a>
+                    <a href="#" (click)="login()">Login</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="#" (click)="login()">Register</a>
                 </li>
+                }@else{
+                <li>
+                    <a href="#" (click)="logout()">Logout</a>
+                </li>
+                }
             </ul>
         </div>
     </div>
