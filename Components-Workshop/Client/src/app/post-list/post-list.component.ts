@@ -12,6 +12,7 @@ import { Posts } from '../types/posts';
 export class PostListComponent implements OnInit {
 
   postList: Posts[] = [];
+  isLoading = true;
 
   constructor(private app: AppService) { }
 
@@ -19,6 +20,7 @@ export class PostListComponent implements OnInit {
     this.app.getRecentPosts()
       .subscribe((posts) => {
         this.postList = posts;
+        this.isLoading = false;
       })
   }
 }

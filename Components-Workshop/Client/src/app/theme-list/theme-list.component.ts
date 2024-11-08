@@ -12,14 +12,17 @@ import { Themes } from '../types/themes';
 export class ThemeListComponent implements OnInit {
 
   themesList: Themes[] = [];
+  isLoading = true;
 
   constructor(private app: AppService) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.app.getAllThemes()
       .subscribe((themes) => {
         this.themesList = themes;
+        this.isLoading = false;
       })
   }
-  
+
 }

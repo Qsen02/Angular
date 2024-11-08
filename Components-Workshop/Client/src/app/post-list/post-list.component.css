@@ -4,6 +4,10 @@ aside {
     font-size: 0.8em;
 }
 
+.aside {
+    position: relative;
+}
+
 .aside * {
     margin: 0;
     padding: 0;
@@ -46,4 +50,29 @@ aside {
 .aside-theme a {
     text-decoration: none;
     color: inherit;
+}
+
+.loader {
+    position: absolute;
+    top: 50px;
+    left: 45%;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #234465;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 1000;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
