@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-theme-list',
@@ -9,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class ThemeListComponent {
 
+  constructor(private app:AppService){}
+  
 }
