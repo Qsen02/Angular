@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PostListComponent } from './post-list/post-list.component';
-import { ThemeListComponent } from './theme-list/theme-list.component';
+import { PostListComponent } from '../../post-list/post-list.component';
+import { ThemeListComponent } from '../../theme-list/theme-list.component';
 
 @Component({
   selector: 'app-main',
