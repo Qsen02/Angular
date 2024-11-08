@@ -6,7 +6,7 @@ export interface Themes {
     subscribers: User[],
     posts:Posts[],
     themeName: string,
-    userId: string,
+    userId: User,
     created_at: string,
     updatedAt: string,
 }

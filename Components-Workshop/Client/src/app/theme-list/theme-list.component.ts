@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { Themes } from '../types/themes';
 
 @Component({
   selector: 'app-theme-list',
@@ -8,8 +9,17 @@ import { AppService } from '../app.service';
   templateUrl: './theme-list.component.html',
   styleUrl: './theme-list.component.css'
 })
-export class ThemeListComponent {
+export class ThemeListComponent implements OnInit {
 
-  constructor(private app:AppService){}
+  themesList: Themes[] = [];
+
+  constructor(private app: AppService) { }
+
+  ngOnInit(): void {
+    this.app.getAllThemes()
+      .subscribe((themes) => {
+        this.themesList = themes;
+      })
+  }
   
 }
