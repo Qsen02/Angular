@@ -1,3 +1,4 @@
+import { Themes } from "./themes"
 import { User } from "./users"
 
 export interface Posts {
@@ -5,7 +6,7 @@ export interface Posts {
     likes: User[],
     text: string,
     userId: User,
-    themeId: string,
+    themeId: Themes,
     created_at: string,
     updatedAt: string
 }
