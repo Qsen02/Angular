@@ -1,0 +1,87 @@
+/* comment */
+
+.comment {
+    margin-top: 1em;
+    border: 1px solid #999;
+    border-radius: 0.5em;
+    width: 100%;
+    padding: 1em;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment header p {
+    padding: 0.5em;
+    text-align: center;
+    background-color: #234465;
+    border-bottom: 1px dashed #999;
+    color: white;
+}
+
+.comment-main {
+    margin: 1em;
+    display: flex;
+}
+
+.userdetails {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.userdetails p {
+    padding-left: 0;
+    text-align: left;
+    color: #234465;
+}
+
+.post-content p {
+    padding-left: 1.5em;
+    color: black;
+}
+
+.userdetails div {
+    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5em;
+    background-color: #e4e3e3;
+}
+
+.userdetails img {
+    padding: 0;
+    align-self: center;
+    margin: 1em 0;
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    border: 1px solid #999;
+}
+
+.footer {
+    font-size: 1.2em;
+    border-top: 1px dashed #999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #234465;
+    padding-top: 0.5em;
+}
+
+.footer i {
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+.footer p {
+    padding-left: 0.5em;
+}
+
+.footer .fas.fa-thumbs-up {
+    color: green;
+}
+
+.footer .fas.fa-thumbs-down {
+    color: red;
+}
