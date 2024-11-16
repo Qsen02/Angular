@@ -47,4 +47,8 @@ export class UserService {
         localStorage.removeItem(this.USER_KEY);
         this.user=null;
      }
+
+     getUser(){
+        return this.user;
+     }
 }

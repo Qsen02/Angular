@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from '../../user/user.service';
+import { AuthUser } from '../../types/users';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +10,22 @@ import { RouterLink } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isAuthenticated = false;
+  curUser: AuthUser | null = null;
 
-  login() {
-    this.isAuthenticated = true;
+  constructor(private userService: UserService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.userService.isLogged;
+    this.curUser = this.userService.getUser();
   }
 
-  logout() {
-    this.isAuthenticated = false;
+  onLogout() {
+    this.userService.logout();
+    this.curUser = this.userService.getUser();
+    this.isAuthenticated = this.userService.isLogged;
+    this.router.navigate(['/login']);
   }
+
 }
