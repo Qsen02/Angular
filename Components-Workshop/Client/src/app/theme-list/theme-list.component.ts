@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { AppService } from '../services/app.service';
 import { Themes } from '../types/themes';
 import { PostListComponent } from '../post-list/post-list.component';
 import { ThemeListItemComponent } from './theme-list-item/theme-list-item.component';

@@ -17,16 +17,18 @@
         </div>
         <!-- comment  -->
         @for(post of theme.posts; track $index){
-            <app-current-them-post [postProp]=post />
+        <app-current-them-post [postProp]=post />
         }
-        <div class="answer-comment">
-            <p><span>currentUser</span> comment:</p>
-            <div class="answer">
-                <form>
-                    <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
-                    <button>Post</button>
-                </form>
+        @if(isAuthenticated){
+            <div class="answer-comment">
+                <p><span>currentUser</span> comment:</p>
+                <div class="answer">
+                    <form>
+                        <textarea name="postText" id="comment" cols="30" rows="10"></textarea>
+                        <button>Post</button>
+                    </form>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>

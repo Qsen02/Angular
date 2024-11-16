@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment.development';
-import { Themes } from './types/themes';
-import { Posts } from './types/posts';
+import { environment } from '../../environments/environment.development';
+import { Themes } from '../types/themes';
+import { Posts } from '../types/posts';
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -7,19 +7,19 @@
         <div class="mini-navbar">
             <ul>
                 @if(isAuthenticated){
-                    <li>
-                        <a href="/profile">{{curUser?.username}}'s profile</a>
-                    </li>
-                    <li>
-                        <a (click)="onLogout()">Logout</a>
-                    </li>
+                <li>
+                    <a href="/profile">{{curUser?.username}}'s profile</a>
+                </li>
+                <li>
+                    <a (click)="onLogout()">Logout</a>
+                </li>
                 }@else{
-                    <li>
-                        <a routerLink="/login">Login</a>
-                    </li>
-                    <li>
-                        <a routerLink="/register">Register</a>
-                    </li>
+                <li>
+                    <a routerLink="/login">Login</a>
+                </li>
+                <li>
+                    <a routerLink="/register">Register</a>
+                </li>
                 }
             </ul>
         </div>
@@ -32,9 +32,11 @@
             <li>
                 <a routerLink="/themes">Themes</a>
             </li>
-            <li>
-                <a routerLink="/add-theme">New Theme</a>
-            </li>
+            @if(isAuthenticated){
+                <li>
+                    <a routerLink="/add-theme">New Theme</a>
+                </li>
+            }
         </ul>
     </nav>
 
