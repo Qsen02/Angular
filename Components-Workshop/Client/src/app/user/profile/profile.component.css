@@ -7,7 +7,7 @@
     border-radius: 1em;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #234465;
-    background-color: #e4e3e3;
+    background-color: silver;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -24,7 +24,7 @@
     height: 7em;
     margin: auto;
     display: block;
-    border-radius: 50%; 
+    border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -32,21 +32,21 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1em;
+    gap: 10px;
     padding: 0.5em;
 }
 
 .flex p:first-child {
-    width: 35%;
-    text-align: right;
+    flex: 0 0 10%;
+    align-self: flex-start;
     margin: 0.5em;
     font-weight: bold;
     color: #234465;
 }
 
 .flex p:last-child {
-    width: 55%;
-    text-align: left;
+    flex: 0 0 10%;
+    align-self:flex-end ;
     margin: 0.5em;
     font-weight: bold;
     color: #333;
@@ -69,13 +69,14 @@
     transform: scale(1.05);
 }
 
-.flex > input, .flex > div {
+.flex>input,
+.flex>div {
     width: 55%;
     text-align: left;
     margin: 0.5em;
 }
 
-.flex > div > input {
+.flex>div>input {
     width: 90%;
     padding: 0.4em;
     border: 1px solid #999;
