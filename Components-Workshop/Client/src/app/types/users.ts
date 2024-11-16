@@ -12,3 +12,11 @@ export interface User {
     created_at: string,
     updatedAt: string
 }
+
+export interface AuthUser{
+    username:string,
+    email:string,
+    password:string,
+    tel:string,
+    _id:string
+}
