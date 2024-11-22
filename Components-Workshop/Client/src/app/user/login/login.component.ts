@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { emailPatter } from '../../utils/emailRegexp';
+import { emailPattern } from '../../utils/emailRegexp';
 
 @Component({
     selector: 'app-login',
@@ -13,7 +13,7 @@ import { emailPatter } from '../../utils/emailRegexp';
 })
 export class LoginComponent {
     loginForm = new FormGroup({
-        email: new FormControl("", [Validators.required, Validators.pattern(emailPatter)]),
+        email: new FormControl("", [Validators.required, Validators.pattern(emailPattern)]),
         password: new FormControl("", [Validators.required, Validators.minLength(5)])
     })
 
