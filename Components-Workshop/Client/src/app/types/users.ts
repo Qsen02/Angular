@@ -14,9 +14,9 @@ export interface User {
 }
 
 export interface AuthUser{
-    username:string,
-    email:string,
-    password:string,
+    username:string | null |undefined,
+    email:string | null |undefined,
+    password:string | null |undefined,
     tel:string,
     _id:string
 }
