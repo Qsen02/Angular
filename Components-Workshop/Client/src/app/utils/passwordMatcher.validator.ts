@@ -4,6 +4,7 @@ export function passwordMatcher (passwordField:string,confirmPassword:string): V
     return function (control:AbstractControl):ValidationErrors | null{
          const password=control.get(passwordField)?.value;
          const repass=control.get(confirmPassword)?.value;
+         console.log(password);
          const isMatching=password==repass;
 
          return isMatching?null:{dontMatch:true};

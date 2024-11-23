@@ -17,6 +17,6 @@ export interface AuthUser{
     username:string | null |undefined,
     email:string | null |undefined,
     password:string | null |undefined,
-    tel:string,
+    tel:string | null |undefined ,
     _id:string
 }

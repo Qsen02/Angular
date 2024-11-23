@@ -32,7 +32,11 @@ export class UserService {
         localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
     }
 
-    register(username: string, email: string, password: string, phoneNumber: string): void {
+    register(username: string | null | undefined
+        , email: string | null | undefined,
+        password: string | null | undefined,
+        phoneNumber: string | null | undefined
+    ): void {
         this.user = {
             username: username,
             email: email,
