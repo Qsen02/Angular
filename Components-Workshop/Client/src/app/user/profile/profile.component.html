@@ -1,3 +1,4 @@
+@if(!toggle){
 <div class="container">
     <div class="profile"><img src="images/profile.png" alt="default user">
         <h3>User Info:</h3>
@@ -13,33 +14,57 @@
             <p>Phone: </p>
             <p>{{user?.tel}}</p>
         </div>
-        <button class="edit-button">Edit</button>
+        <button class="edit-button" (click)="onToggle($event)">Edit</button>
     </div>
 </div>
-<!-- <div class="container">
+}@else{
+<div class="container">
     <div class="profile">
-        <img src="./profile.png" alt="default user">
+        <img src="images/profile.png" alt="default user">
         <h3>User Info:</h3>
-        <form action="">
+        <form #form="ngForm" (ngSubmit)="onSubmit($event,form)">
             <div class="flex">
                 <p>Username: </p>
-                <input type="text" name="username" id="username" value="Johny">
+                <input type="text" name="username" id="username" value={{user?.username}} 
+                ngModel #inputUsername="ngModel" [value]="user?.username" required minlength="5">
             </div>
+            @if(inputUsername?.touched){
+                <div>
+                    @if(inputUsername?.errors?.["required"]){
+                        <p class="error">Username is required!</p>
+                    }
+                    @if(inputUsername?.errors?.["minlength"]){
+                        <p class="error">Username must be at least 5 chars long!</p>
+                    }
+                </div>
+            }
             <div class="flex">
                 <p>Email: </p>
-                <input type="email" name="email" id="email" value="john.doe@gmail.com">
+                <input type="email" name="email" id="email" value={{user?.email}}
+                ngModel #inputEmail="ngModel" required [pattern]="emailValidator" [value]=user?.email>
             </div>
+            @if(inputEmail?.touched){
+                <div>
+                    @if(inputEmail?.errors?.["required"]){
+                        <p class="error">Email is required!</p>
+                    }
+                    @if(inputEmail?.errors?.["pattern"]){
+                        <p class="error">Email is not valid!</p>
+                    }
+                </div>
+            }
             <div class="flex">
                 <p>Phone: </p>
                 <div>
                     <select name="select-tel" id="select-tel" class="tel">
                         <option value="00359">+359</option>
                     </select>
-                    <input type="text" name="tel" id="tel" value="885 888 888">
+                    <input type="text" name="tel" id="tel" value={{user?.tel}} ngModel #inputTel="ngModel" [value]="user?.tel">
                 </div>
             </div>
-            <button class="red-button">Cancel</button>
-            <button class="green-button">Save</button>
+            <button class="red-button" (click)="onToggle($event)">Cancel</button>
+            <button class="green-button" [disabled]="form.invalid">Save</button>
         </form>
     </div>
-</div> -->
+</div>
+}
