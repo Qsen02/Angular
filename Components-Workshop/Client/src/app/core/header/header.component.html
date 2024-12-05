@@ -6,7 +6,7 @@
         </div>
         <div class="mini-navbar">
             <ul>
-                @if(isAuthenticated){
+                @if(isLogged){
                 <li>
                     <a href="/profile">{{curUser?.username}}'s profile</a>
                 </li>
@@ -32,7 +32,7 @@
             <li>
                 <a routerLink="/themes">Themes</a>
             </li>
-            @if(isAuthenticated){
+            @if(isLogged){
                 <li>
                     <a routerLink="/add-theme">New Theme</a>
                 </li>

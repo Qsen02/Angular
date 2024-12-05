@@ -10,22 +10,22 @@ import { AuthUser } from '../../types/users';
     templateUrl: './header.component.html',
     styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
-    isAuthenticated = false;
-    curUser: AuthUser | null = null;
+export class HeaderComponent {
+
+    get curUser(): AuthUser | null {
+        return this.userService.getUser();
+    }
+
+    get isLogged(): boolean {
+        return this.userService.isLogged;
+    }
 
     constructor(private userService: UserService, private router: Router) { }
 
-    ngOnInit(): void {
-        this.isAuthenticated = this.userService.isLogged;
-        this.curUser = this.userService.getUser();
-    }
-
     onLogout() {
-        this.userService.logout();
-        this.curUser = this.userService.getUser();
-        this.isAuthenticated = this.userService.isLogged;
-        this.router.navigate(['/login']);
+        this.userService.logout().subscribe(()=>{
+            this.router.navigate(['/login']);
+        });
     }
 
 }

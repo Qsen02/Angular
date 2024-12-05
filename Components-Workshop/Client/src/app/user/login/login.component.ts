@@ -36,15 +36,10 @@ export class LoginComponent {
     }
 
     onLogin() {
-        try {
             const email = this.loginForm.value.email;
             const password = this.loginForm.value.password;
-            this.userService.login(email, password);
-            this.router.navigate(['/home']);
-        } catch (err) {
-            if (err instanceof Error) {
-                alert(err.message);
-            }
-        }
+            this.userService.login(email, password).subscribe((user)=>{
+                this.router.navigate(['/home']);
+            });
     }
 }

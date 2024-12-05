@@ -36,8 +36,8 @@ export class UserService implements OnDestroy{
         }))
     }
 
-    register(username: string | null | undefined
-        , email: string | null | undefined,
+    register(username: string | null | undefined,
+        email: string | null | undefined,
         password: string | null | undefined,
         phoneNumber: string | null | undefined
     ): Observable<AuthUser> {
