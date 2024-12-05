@@ -20,6 +20,21 @@ body {
     background-color: #e4e3e3;
 }
 
+.loader {
+    position: absolute;
+    top: 40px;
+    left: 45%;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #234465;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    z-index: 1000;
+}
+
 .container {
     width: 90%;
     margin: auto;
@@ -122,6 +137,16 @@ blockquote p:last-child {
 
 blockquote p.author {
     text-align: right;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media (min-width: 800px) {

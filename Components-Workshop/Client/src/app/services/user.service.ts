@@ -1,58 +1,70 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AuthUser } from '../types/users';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnDestroy{
+    private user$$ = new BehaviorSubject<AuthUser | null>(null);
+    private user$ = this.user$$.asObservable();
+
     USER_KEY = '[user]';
     user: AuthUser | null = null;
+    userSubscription: Subscription | null = null;
 
     get isLogged(): boolean {
         return !!this.user;
     }
 
-    constructor() {
-        try {
-            const user = localStorage.getItem(this.USER_KEY) || "";
-            this.user = JSON.parse(user);
-        } catch (err) {
-            this.user = null;
+    constructor(private http: HttpClient) {
+        const storedUser = localStorage.getItem(this.USER_KEY);
+        if (storedUser) {
+            this.user = JSON.parse(storedUser);
+            this.user$$.next(this.user)
         }
+        this.userSubscription = this.user$.subscribe((user) => {
+            this.user = user;
+        });
     }
 
-    login(email: string | null | undefined, password: string | null | undefined): void {
-        this.user = {
-            username: email?.split("@")[0],
-            email: email,
-            password: password,
-            tel: "08893728345245",
-            _id: "dasdsfsfgfddfg"
-        }
-        localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+    login(email: string | null | undefined, password: string | null | undefined): Observable<AuthUser> {
+        return this.http.post<AuthUser>("/api/login", { email, password }).pipe(tap((user) => {
+            this.user$$.next(user);
+            localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+        }))
     }
 
     register(username: string | null | undefined
         , email: string | null | undefined,
         password: string | null | undefined,
         phoneNumber: string | null | undefined
-    ): void {
-        this.user = {
-            username: username,
-            email: email,
-            password: password,
-            tel: phoneNumber,
-            _id: "dasdsfsfgfddfg"
-        }
-        localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+    ): Observable<AuthUser> {
+        return this.http.post<AuthUser>("/api/register", { username, email, password, phoneNumber }).pipe(tap((user) => {
+            this.user$$.next(user);
+            localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+        }))
     }
 
-    logout(): void {
-        localStorage.removeItem(this.USER_KEY);
-        this.user = null;
+    logout() {
+        return this.http.post("/api/logout", {}).pipe(tap(() => {
+            this.user$$.next(null);
+            localStorage.removeItem(this.USER_KEY);
+        }))
     }
 
     getUser() {
         return this.user;
+    }
+
+    getUserProfile(): Observable<AuthUser> {
+        return this.http.get<AuthUser>("/api/users/profile").pipe(tap((user) => {
+            this.user$$.next(user);
+        }));
+    }
+
+    ngOnDestroy(): void {
+        this.userSubscription?.unsubscribe();
     }
 }
