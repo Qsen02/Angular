@@ -22,7 +22,7 @@ export const routes: Routes = [
         ]
     },
     { path: "add-theme", component: AddThemeComponent, canActivate:[userGuard] },
-    { path: "profile", component: ProfileComponent },
+    { path: "profile", component: ProfileComponent,canActivate:[userGuard] },
     { path: "404", component: NotFoundComponent },
     { path: "**", redirectTo: "/404", pathMatch: "full" }
 ];
