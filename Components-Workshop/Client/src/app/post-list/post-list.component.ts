@@ -3,24 +3,24 @@ import { AppService } from '../services/app.service';
 import { Posts } from '../types/posts';
 
 @Component({
-  selector: 'app-post-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './post-list.component.html',
-  styleUrl: './post-list.component.css'
+    selector: 'app-post-list',
+    standalone: true,
+    imports: [],
+    templateUrl: './post-list.component.html',
+    styleUrl: './post-list.component.css'
 })
 export class PostListComponent implements OnInit {
 
-  postList: Posts[] = [];
-  isLoading = true;
+    postList: Posts[] = [];
+    isLoading = true;
 
-  constructor(private app: AppService) { }
+    constructor(private app: AppService) { }
 
-  ngOnInit(): void {
-    this.app.getRecentPosts()
-      .subscribe((posts) => {
-        this.postList = posts;
-        this.isLoading = false;
-      })
-  }
+    ngOnInit(): void {
+        this.app.getRecentPosts()
+            .subscribe((posts) => {
+                this.postList = posts;
+                this.isLoading = false;
+            })
+    }
 }

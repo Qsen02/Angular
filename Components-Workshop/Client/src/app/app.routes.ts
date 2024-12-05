@@ -9,20 +9,22 @@ import { CurrentThemComponent } from './theme-list/current-them/current-them.com
 import { ProfileComponent } from './user/profile/profile.component';
 import { userGuard } from './guards/user.guard';
 import { guestGuard } from './guards/guest.guard';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "/home", pathMatch: "full" },
     { path: "home", component: HomeComponent },
-    { path: "login", component: LoginComponent, canActivate:[guestGuard] },
-    { path: "register", component: RegisterComponent,canActivate:[guestGuard] },
+    { path: "login", component: LoginComponent, canActivate: [guestGuard] },
+    { path: "register", component: RegisterComponent, canActivate: [guestGuard] },
     {
         path: "themes", children: [
             { path: "", component: ThemeListComponent },
             { path: ":id", component: CurrentThemComponent }
         ]
     },
-    { path: "add-theme", component: AddThemeComponent, canActivate:[userGuard] },
-    { path: "profile", component: ProfileComponent,canActivate:[userGuard] },
+    { path: "add-theme", component: AddThemeComponent, canActivate: [userGuard] },
+    { path: "profile", component: ProfileComponent, canActivate: [userGuard] },
+    { path: "error", component: ErrorMessageComponent },
     { path: "404", component: NotFoundComponent },
     { path: "**", redirectTo: "/404", pathMatch: "full" }
 ];
