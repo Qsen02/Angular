@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
     providedIn: 'root'
 })
-export class UserService implements OnDestroy{
+export class UserService implements OnDestroy {
     private user$$ = new BehaviorSubject<AuthUser | null>(null);
     private user$ = this.user$$.asObservable();
 
@@ -62,6 +62,13 @@ export class UserService implements OnDestroy{
         return this.http.get<AuthUser>("/api/users/profile").pipe(tap((user) => {
             this.user$$.next(user);
         }));
+    }
+
+    editProfile(username: string, email: string, tel?: string):Observable<AuthUser> {
+        return this.http.put<AuthUser>(`/api/users/profile`,{username,email,tel}).pipe(tap((user)=>{
+            this.user$$.next(user);
+            localStorage.setItem(this.USER_KEY,JSON.stringify(user));
+        }))
     }
 
     ngOnDestroy(): void {

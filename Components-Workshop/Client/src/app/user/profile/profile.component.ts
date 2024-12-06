@@ -22,30 +22,19 @@ export class ProfileComponent implements OnInit {
 		this.user = this.userService.getUser();
 	}
 
-	onToggle(event:Event) {
+	onToggle(event: Event) {
 		event.preventDefault();
 		this.toggle = !this.toggle;
 	}
 
-	onSubmit(event:Event,form: NgForm) {
-		try {
-			const username = form.controls?.["username"].value as string | null | undefined;
-			const email = form.controls?.["email"].value;
-			const tel = form.controls?.["tel"].value;
-			if (!username || !email || !tel) {
-				throw new Error("All fields required!");
-			}
-			if (this.user) {
-				this.user.username = username;
-				this.user.email = email;
-				this.user.tel = tel;
-			}
+	onSubmit(event: Event, form: NgForm) {
+		const { username, email, tel } = form.value;
+		this.userService.editProfile(username, email, tel).subscribe((user) => {
+			this.user=user;
 			form.reset();
 			this.onToggle(event);
-		} catch (err) {
-			if (err instanceof Error) {
-				alert(err.message);
-			}
-		}
+		})
+
+		this.userService.user=this.user;
 	}
 }

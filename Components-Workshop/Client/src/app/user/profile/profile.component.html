@@ -26,7 +26,7 @@
             <div class="flex">
                 <p>Username: </p>
                 <input type="text" name="username" id="username" value={{user?.username}} 
-                ngModel #inputUsername="ngModel" [value]="user?.username" required minlength="5">
+                [ngModel]="user?.username" #inputUsername="ngModel" [value]="user?.username" required minlength="5">
             </div>
             @if(inputUsername?.touched){
                 <div>
@@ -41,7 +41,7 @@
             <div class="flex">
                 <p>Email: </p>
                 <input type="email" name="email" id="email" value={{user?.email}}
-                ngModel #inputEmail="ngModel" required [pattern]="emailValidator" [value]=user?.email>
+                [ngModel]="user?.email" #inputEmail="ngModel" required [pattern]="emailValidator" [value]=user?.email>
             </div>
             @if(inputEmail?.touched){
                 <div>
@@ -59,7 +59,7 @@
                     <select name="select-tel" id="select-tel" class="tel">
                         <option value="00359">+359</option>
                     </select>
-                    <input type="text" name="tel" id="tel" value={{user?.tel}} ngModel #inputTel="ngModel" [value]="user?.tel">
+                    <input type="text" name="tel" id="tel" value={{user?.tel}} [ngModel]="user?.tel" #inputTel="ngModel" >
                 </div>
             </div>
             <button class="red-button" (click)="onToggle($event)">Cancel</button>
