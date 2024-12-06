@@ -26,4 +26,8 @@ export class AppService {
     createTheme(themeName: string, postText: string): Observable<Themes> {
         return this.http.post<Themes>("/api/themes", { themeName, postText });
     }
+
+    createComment(themeId:string,postText:string):Observable<Themes>{
+        return this.http.post<Themes>(`/api/themes/${themeId}`,{postText});
+    }
 }

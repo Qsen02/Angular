@@ -9,5 +9,5 @@ import { Posts } from '../../../types/posts';
     styleUrl: './current-them-post.component.css'
 })
 export class CurrentThemPostComponent {
-    @Input("postProp") post = {} as Posts;
+    @Input("postProp") post:Posts|null=null;
 }
