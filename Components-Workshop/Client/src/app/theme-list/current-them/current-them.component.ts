@@ -9,13 +9,13 @@ import { FormsModule, NgForm } from '@angular/forms';
 @Component({
     selector: 'app-current-them',
     standalone: true,
-    imports: [CurrentThemPostComponent,FormsModule],
+    imports: [CurrentThemPostComponent, FormsModule],
     templateUrl: './current-them.component.html',
     styleUrl: './current-them.component.css'
 })
 export class CurrentThemComponent implements OnInit {
 
-    theme : Themes|null=null;;
+    theme: Themes | null = null;;
     isAuthenticated = false;
     constructor(private route: ActivatedRoute, private appService: AppService, private userService: UserService) { }
 
@@ -29,13 +29,11 @@ export class CurrentThemComponent implements OnInit {
         this.isAuthenticated = this.userService.isLogged;
     }
 
-    onCreate(form:NgForm){
-        const {postText}=form.value;
+    onCreate(form: NgForm) {
+        const { postText } = form.value;
         const id: string = this.route.snapshot.params['id'];
-        this.appService.createComment(id,postText).subscribe((theme)=>{
-            if(this.theme){
-                this.theme.posts.push(theme.posts[theme.posts.length-1]);
-            }
+        this.appService.createComment(id, postText).subscribe((theme) => {
+            this.theme = theme;
             form.reset();
         })
     }
