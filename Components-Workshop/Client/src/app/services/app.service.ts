@@ -11,15 +11,19 @@ export class AppService {
 
     constructor(private http: HttpClient) { }
 
-    getAllThemes():Observable<Themes[]> {
+    getAllThemes(): Observable<Themes[]> {
         return this.http.get<Themes[]>(`/api/themes`);
     }
 
-    getRecentPosts():Observable<Posts[]> {
+    getRecentPosts(): Observable<Posts[]> {
         return this.http.get<Posts[]>(`/api/posts?limit=5`);
     }
 
-    getThemeById(id: string):Observable<Themes> {
+    getThemeById(id: string): Observable<Themes> {
         return this.http.get<Themes>(`/api/themes/${id}`);
+    }
+
+    createTheme(themeName: string, postText: string): Observable<Themes> {
+        return this.http.post<Themes>("/api/themes", { themeName, postText });
     }
 }

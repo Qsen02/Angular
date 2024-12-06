@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from '../../services/app.service';
 
 @Component({
     selector: 'app-add-theme',
@@ -10,12 +11,14 @@ import { Router } from '@angular/router';
     styleUrl: './add-theme.component.css'
 })
 export class AddThemeComponent {
-    constructor(private router: Router) { }
+
+    constructor(private router: Router, private app: AppService) { }
+
     onSubmit(form: NgForm) {
-        if (form.invalid) {
-            return;
-        }
-        this.router.navigate(["/themes"]);
+        const { themeName, postText } = form.value;
+        this.app.createTheme(themeName, postText).subscribe(() => {
+            this.router.navigate(["/themes"]);
+        })
     }
 
     onCancel() {
