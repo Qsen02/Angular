@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../services/app.service';
 import { Posts } from '../types/posts';
+import { CalcDatePipe } from '../pipes/calc-date.pipe';
 
 @Component({
     selector: 'app-post-list',
     standalone: true,
-    imports: [],
+    imports: [CalcDatePipe],
     templateUrl: './post-list.component.html',
     styleUrl: './post-list.component.css'
 })
